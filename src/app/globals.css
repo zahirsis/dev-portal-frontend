@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-select-rgb: 249 250 251;
+  --border-select-rgb: 209 213 219;
+  --foreground-select-rgb: 0 0 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15 15 15;
+    --background-end-rgb: 15 15 15;
+    --background-select-rgb: 75 85 99;
+    --border-select-rgb: 107 114 128;
+    --foreground-select-rgb: 255 255 255;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.custom-select > div > div {
+  background-color: rgb(var(--background-select-rgb));
+  border-color: rgb(var(--border-select-rgb));
+  color: rgb(var(--foreground-select-rgb));
+}
+
+.custom-select > div > div > div:nth-child(2) > div > span {
+  background-color: rgb(var(--border-select-rgb));
+}
+
+.custom-select > div > div:nth-child(2) > div > input {
+  background-color: rgb(var(--background-select-rgb));
+  border-color: rgb(var(--border-select-rgb));
+  color: rgb(var(--foreground-select-rgb));
+}
+
+.custom-select > div > div:nth-child(2) > div > div > li {
+  color: rgb(var(--foreground-select-rgb));
+}
