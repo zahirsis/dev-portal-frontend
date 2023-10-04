@@ -46,6 +46,7 @@ export interface SetupCiCdState {
     loaded: boolean,
     sending: boolean,
     processId: string,
+    repositoryBaseUrl: string,
     errors: {
         [key: string]: string[]
     }[],

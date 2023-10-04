@@ -7,6 +7,7 @@ import {optionValue} from "@/common/types";
 import {SetupCiCdState} from "@/common/store/Slices/setup-ci-cd/types";
 import setupCiCd, {SetupData} from "@/common/actions/ci-cd/setupCiCd";
 import {INPUT_ERROR} from "@/common/errors/inputError";
+import getCiCdData from "@/common/actions/ci-cd/getData";
 
 export const loadData = createAsyncThunk(
     'setupCiCd/loadData',
@@ -14,10 +15,12 @@ export const loadData = createAsyncThunk(
         const templates = await listTemplates()
         const squads = await listSquads()
         const envs = await listEnvironments()
+        const data = await getCiCdData()
         return {
             templates,
             squads,
-            envs
+            envs,
+            data,
         }
     }
 )
@@ -81,7 +84,7 @@ const initialState: SetupCiCdState = {
     processId: "",
     errorMessage: "",
     errors: [],
-
+    repositoryBaseUrl: "",
     templates: [],
     template: null,
     envs: [],
@@ -254,6 +257,7 @@ export const setupCiCdSlice = createSlice({
         })
         builder.addCase(loadData.fulfilled, (state, action) => {
             state.templates = action.payload.templates
+            state.repositoryBaseUrl = action.payload.data.repositoryBaseUrl
             state.envs = action.payload.envs.map(env => {
                 return {
                     data: env,

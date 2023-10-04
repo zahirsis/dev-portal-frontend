@@ -54,6 +54,7 @@ export default function SetupCiCd() {
         errors,
         errorMessage,
         processId,
+        repositoryBaseUrl,
     } = useSelector((state: RootState) => state.SetupCiCd)
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => {
@@ -262,7 +263,7 @@ export default function SetupCiCd() {
                                 </label>
                                 <div className="flex">
                                     <div className="flex-none p-3">
-                                        <span>https://bitbucket.org/Project/</span>
+                                        <span>{repositoryBaseUrl}</span>
                                     </div>
                                     <input type="text" name="application-name" id="application-name"
                                            className="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
